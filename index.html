@@ -60,7 +60,7 @@
 <body>
 
 <div class="center1" id="codeshow1">  <!--language-css-->
-    <pre id="lang" class="css"><code id="showncode" style="border-radius: 10px; font-size: 45px;  resize: both; overflow: auto;">pre[class*="language-"] {
+    <pre id="lang" class="css"><code id="showncode" style="border-radius: 10px; font-size: 45px;  resize: both; overflow: auto;">pre[class*="language-css"] {
 	background: #272822;
     }
 </code></pre>
@@ -73,11 +73,10 @@
         <div class="container">
             <div style="float: left;">
                <h3>FontSize: <div id="size">75</div></h3>
-                    <input id="size1" type="range" min="5" max="160" value="75"><br>
-                    <input id="size2" onchange="size()" type="number">
+                    <input id="size1" type="range" min="5" max="160" value="75">
             </div>
                 <div style="float: right;"><div>Code:</div>
-                    <textarea class="code" wrap="hard" onchange="codecopy(), reload()" id="code" name="code" placeholder="Copy Code in Here" style="width: 600px"> </textarea>
+                    <textarea class="code" wrap="hard" oninput="codecopy(), reload()" id="code" name="code" placeholder="Copy Code in Here" style="width: 600px"> </textarea>
                 </div>
 
             <div style="float: left; width: 50%">
@@ -87,6 +86,8 @@
                 <option value="html">HTML</option>
                 <option value="java">Java</option>
                 <option value="autoit">AutoIT</option>
+                <option value="glsl">GLSL</option>
+                <!--Hier sprachen einfügen     verfügbare Spachen auf: https://highlightjs.org/download/-->
             </select>
         <button onclick="hidefooter()" class="center" >HIDE</button>
         <button onclick="print()" class="center" >Print</button>
@@ -114,12 +115,6 @@
         $('code').css('font-size', v + 'px');
         $('#size').html(v);
     });
-
-    function size() {
-        var size = document.getElementById('size2').value;
-        $('code').css('font-size', size + 'px');
-        $('#size').html(size);
-    }
 
     function codecopy(){
         var code = document.getElementById('code').value;
