@@ -9,20 +9,32 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/obsidian.min.css">
     <link rel="stylesheet" href="background.css">
     <style>
+        .background1 {
+          background: #4f5256;
+        }
+
         footer.bar{
             position: absolute;
             bottom: 0;
             height: 10em;
-            width: 100%;
             background-color: #FFFFFF; /*#0a4fff-blue*/
             color: #000000;
+            background-color: #fd9644;
+            padding: 20px;
+            display: flex;
+            border-radius: 12px;
+            border: 2px solid #eb3b5a;
         }
 
         #footerbar1 {
-            position:fixed;
+            position: absolute;
+            width: 900px;
             bottom: 0;
-            width: 100%;
             height: 2em;
+            font-family: sans-serif;
+            margin: 20px;
+
+            transform: translate(-50%,);
         }
 
         .container {
@@ -31,63 +43,120 @@
 
         textarea.code {
             width: 300px;
-            height: 150px;
+            height: 130px;
+            border-radius: 12px;
+            border: 2px solid #bf2c6c;
+            font-family: sans-serif;
+            padding: 12px;
+            resize: none;
+            color: white;
+            background: #515151;
+            transition: 0.2s;
+        }
+
+        textarea.code:hover {
+          border: 2px solid #1a9b38;
+
         }
 
         .center1 {
-            position: absolute;
-            left: 50%;
-            top: 35%;
-            -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
+          font-size: 45px;
+          resize: none;
+          overflow: auto;
         }
+
+        .form {
+          padding: 30px;
+          top: 35%;
+          left: 50%;
+          border-radius: 24px;
+          position: absolute;
+          display: flex;
+          transform: translate(-50%, -50%);
+
+          border: 2px solid #fa8231;
+
+          background: linear-gradient(45deg, #fd9644 0%, #eb3b5a 100%);
+        }
+
+        .selector {
+          padding: 5px;
+          width: 120px;
+          border-radius: 5px;
+          border: 2px solid #4b7bec;
+          background: #4b7bec;
+          font-family: sans-serif;
+          color: white;
+          transition: 0.2s;
+        }
+
+        .selector:hover {
+          background: #26de81;
+          border: 2px solid #26de81;
+          color: #3867d6;
+        }
+
+        .btn {
+          padding: 6px;
+          border-radius: 7px;
+          border: 2px solid #4b7bec;
+          background: #4b7bec;
+          font-family: sans-serif;
+          color: white;
+          transition: 0.2s;
+        }
+
+        .btn:hover {
+          background: #26de81;
+          border: 2px solid #26de81;
+          color: #3867d6;
+        }
+
+        .background {
+          background: #4b6584;
+        }
+
+        .code1 {
+          border-radius: 12px;
+        }
+
     </style>
 </head>
-<body class="background1">
-
-<div class="center1" id="codeshow1">  <!--language-css-->
-    <pre id="lang" class="css">
-        <code id="showncode" style="border-radius: 10px; font-size: 45px; resize: both; overflow: auto;">pre[class*="language-css"] {
-	background: #272822;
-    }
+<body class="background">
+<form class="form"><div class="center1" id="codeshow1">  <!--language-css-->
+<pre id="lang" class="css">
+<code id="showncode" class="code1">pre[class*="language-css"] {
+    	background: #272822;
+        }
 </code></pre>
 </div>
+</form>
 
-<div class="footerbar1" id="footerbar1" style="left:0%; font-family: Arial">
-
+<div class="footerbar1" id="footerbar1">
     <footer class="bar">
         <div class="container">
-            <div style="float: left;">
-               <h3>FontSize: <div id="size">75</div></h3>
+            <div style="float: left; display: flex;">
+               <h3>FontSize: <span id="size">75</span></h3>
                     <input id="size1" type="range" min="5" max="160" value="75">
             </div>
-                <div style="float: right;"><div>Code:</div>
-                    <textarea class="code" wrap="hard" oninput="codecopy(), reload()" id="code" name="code" placeholder="Copy Code in Here" style="width: 600px"> </textarea>
+                <div style="float: right; display: flex;">
+                  <span style="margin: 20px;">Code:</span><textarea class="code" wrap="hard" oninput="codecopy(), reload(), resizeToFit(this.value)" id="code" name="code" placeholder="Copy Code in Here"> </textarea>
                 </div>
 
-            <div style="float: left; width: 50%">
-            <select id="listlang" onchange="getSelectValue();">
+            <div style="float: left; width: 50%; margin: 2px;">
+            <select class="selector" id="listlang" onchange="getSelectValue();">
                 <option value="css">CSS</option>
                 <option value="javascript">JavaScript</option>
                 <option value="html">HTML</option>
                 <option value="java">Java</option>
                 <option value="autoit">AutoIT</option>
                 <option value="glsl">GLSL</option>
+                <option value="c++">C++</option>
                 <!--Hier sprachen einfügen     verfügbare Spachen auf: https://highlightjs.org/download/-->
             </select>
-
-                <select id="listback" onchange="backgroundchange()">
-                    <option value="background1">Standart</option>
-                    <option value="background2">SexyBlue</option>
-                    <option value="background3">Cherry</option>
-                    <option value="background4">SexyBlue2</option>
-                    <option value="background5">PurpleLove</option>
-                    <option value="background6">Almost</option>
-                    <!--Hier Backgrounds einfügen-->
-                </select>
-        <button onclick="hidefooter()" class="center" >HIDE(F7)</button>
-                <button onclick="reload()" class="center" >Reload(F8)</button>
-        <button onclick="print()" class="center" >Print</button>
+        <button onclick="hidefooter()" class="btn" >Hide (F7)</button>
+        <button onclick="reload()" class="btn" >Reload (F8)</button>
+        <button onclick="print()" class="btn" >Print</button>
         </div>
         </div>
     </footer>
@@ -95,6 +164,7 @@
 
 </body>
 <script>
+
     hljs.initHighlightingOnLoad();
 
     document.body.onkeydown = function(event)       /*F7 for hidefooter*/
@@ -111,8 +181,6 @@
         }
     };
 
-
-
     $('#size1').on('change', function () {
         var v = $(this).val();
         $('code').css('font-size', v + 'px');
@@ -124,7 +192,7 @@
         var elem = document.getElementById('showncode');
         elem.innerHTML = code;
         document.querySelectorAll("code").forEach(function(element) {
-            element.innerHTML = element.innerHTML.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+            // element.innerHTML = element.innerHTML.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
         });
     reload()}
 
