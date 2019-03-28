@@ -71,7 +71,7 @@
                 </div></div>
 
                 <div class="col-sm-4">
-                    Sprache:
+                    Lang:
                     <select id="listlang" onchange="getSelectValue();">
                         <option value="css">CSS</option>
                         <option value="javascript">JavaScript</option>
@@ -86,7 +86,7 @@
                         <!--Hier sprachen einfügen     verfügbare Spachen auf: https://highlightjs.org/download/-->
                         </select>
 
-                    Hintergrundbild:
+                    Background:
                             <select id="listback" onchange="backgroundchange()">
                                 <option value="background1">Standart</option>
                                 <option value="background2">Light Azure</option>
@@ -114,7 +114,7 @@
 
                                 <!--Hier Backgrounds einfügen-->
                         </select>
-                    Eigene Hintergrundfarbe: <input type="color" id="own_background_solidcolor" onchange="backgroundchange_own_solid()">
+                    Own Backgroundcolor: <input type="color" id="own_background_solidcolor" onchange="backgroundchange_own_solid()">
 
                   <button onclick="hidefooter()" class="center" >HIDE(F7)</button>
                     <button onclick="reload()" class="center" >Reload(F8)</button>
@@ -209,6 +209,7 @@
         var selectedValue = document.getElementById("listback").value;
         $('body').removeClass();
         $('body').addClass(selectedValue);
+        $('body').css('background-color', "");
         reload();
     }
 </script>
